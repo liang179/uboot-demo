@@ -1,0 +1,16 @@
+version: 2.1
+
+jobs:
+  build-uboot:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - checkout
+      - run: bash build-uboot.sh
+      - store_artifacts:
+          path: u-boot.bin
+
+workflows:
+  uboot-demo:
+    jobs:
+      - build-uboot
